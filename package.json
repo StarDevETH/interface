@@ -67,8 +67,8 @@
     "@apidevtools/json-schema-ref-parser": "11.7.3",
     "@apollo/client": "3.10.4",
     "@babel/preset-env": "7.26.0",
-    "@coinbase/wallet-sdk": "4.3.2",
     "@cloudflare/workerd-linux-64": "1.20240402.0",
+    "@coinbase/wallet-sdk": "4.3.2",
     "@ethersproject/hash": "5.7.0",
     "@gorhom/bottom-sheet@4.6.4": "patch:@gorhom/bottom-sheet@npm%3A4.6.4#./.yarn/patches/@gorhom-bottom-sheet-npm-4.6.4-5b2c27bb1f.patch",
     "@react-native/gradle-plugin@0.77.2": "patch:@react-native/gradle-plugin@npm%3A0.77.2#./.yarn/patches/@react-native-gradle-plugin-npm-0.77.2-3aa73582db.patch",
@@ -133,7 +133,7 @@
   },
   "scripts": {
     "extension": "yarn workspace @uniswap/extension",
-    "build": "yarn workspace web build",
+    "build": "yarn workspace @uniswap/interface build:production",
     "g:build": "turbo run build --concurrency=100%",
     "g:build:storybook": "turbo run storybook:build --force --concurrency=100%",
     "g:check:deps:usage": " depcheck && turbo run check:deps:usage",
