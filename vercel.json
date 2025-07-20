@@ -5,6 +5,8 @@
       "destination": "/"
     }
   ],
+  "buildCommand": "yarn build",
+  "outputDirectory": "apps/web/build",
   "headers": [
     {
       "source": "/index.html",
