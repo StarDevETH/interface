@@ -1,6 +1,6 @@
-import { AccountType } from "uniswap/src/features/accounts/types";
-import { Platform } from "uniswap/src/features/platforms/types/Platform";
-import { WalletMeta } from "uniswap/src/features/wallet/types/WalletMeta";
+import { AccountType } from 'uniswap/src/features/accounts/types'
+import { Platform } from 'uniswap/src/features/platforms/types/Platform'
+import { WalletMeta } from 'uniswap/src/features/wallet/types/WalletMeta'
 
 export type BaseAccountDetails<TPlatform extends Platform, TAddressType extends string = string> = {
   platform: TPlatform

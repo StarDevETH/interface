@@ -53,7 +53,7 @@
     "build": "tsc -b",
     "check:deps:usage": "depcheck && yarn check-promise-version",
     "check-promise-version": "../../scripts/check-promise-version.sh",
-    "format": "../../scripts/prettier.sh",
+    "format": "npx --no-install prettier --write \"**/*.{js,ts,tsx,css,json,md}\"",
     "lint": "eslint . --ext ts,tsx --max-warnings=0",
     "lint:fix": "eslint . --ext ts,tsx --fix",
     "test": "jest",

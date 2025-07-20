@@ -64,6 +64,7 @@
     "metro-resolver": "Pinning previous version because of excessive logging thats not fixed until RN 0.79 https://github.com/facebook/hermes/commit/c615b115dfa471c108256982ce07f10adee63667"
   },
   "resolutions": {
+    "@apidevtools/json-schema-ref-parser": "11.7.3",
     "@apollo/client": "3.10.4",
     "@babel/preset-env": "7.26.0",
     "@coinbase/wallet-sdk": "4.3.2",
@@ -192,5 +193,15 @@
     "apps/*",
     "packages/*",
     "config/*"
-  ]
+  ],
+  "devDependencies": {
+    "browserify-zlib": "0.2.0",
+    "buffer": "6.0.3",
+    "node-polyfill-webpack-plugin": "4.1.0",
+    "os-browserify": "0.3.0",
+    "path-browserify": "1.0.1",
+    "process": "0.11.10",
+    "stream-browserify": "3.0.0",
+    "util": "0.12.5"
+  }
 }

@@ -31,6 +31,22 @@ const compileNodeModules = [
   'expo-modules-core',
 ]
 
+module.exports = {
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      // Polyfill Node built‑ins that some deps still expect
+      config.plugins.push(new NodePolyfillPlugin())
+
+      // We don’t actually want to read files in the browser
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+      }
+    }
+    return config
+  },
+}
+
 // This is needed for webpack to compile JavaScript.
 // Many OSS React Native packages are not compiled to ES5 before being
 // published. If you depend on uncompiled packages they may cause webpack build
@@ -302,6 +318,7 @@ module.exports = (env) => {
       ],
       fallback: {
         fs: false,
+        os: false,
       },
     },
     devtool: 'source-map',

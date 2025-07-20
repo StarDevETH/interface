@@ -33,7 +33,7 @@ export const networkUnknown = createFixture<NetInfoUnknownState>()(() => ({
   type: NetInfoStateType.unknown,
   isInternetReachable: null,
   details: null,
-}));
+}))
 ```
 
 To create a fixture, we have to use the `createFixture` function and provide one type argument which will be the type of the object the fixture corresponds to (`NetInfoUnknownState` in the example above). In the simplest scenario, the `createFixture` fixture is called with no arguments (`createFixture<NetInfoUnknownState>()`). This call returns another function that takes a callback which should return the resulting fixture object.
@@ -52,11 +52,11 @@ The first function returned by `createFixture` takes an optional `options` param
 
 ```tsx
 type TokenOptions = {
-  sdkToken: SDKToken | null;
-};
+  sdkToken: SDKToken | null
+}
 
 export const token = createFixture<Token, TokenOptions>({ sdkToken: null })(({ sdkToken }) => ({
-  __typename: "Token",
+  __typename: 'Token',
   id: faker.datatype.uuid(),
   name: sdkToken?.name ?? faker.lorem.word(),
   symbol: sdkToken?.symbol ?? faker.lorem.word(),
@@ -65,7 +65,7 @@ export const token = createFixture<Token, TokenOptions>({ sdkToken: null })(({ s
   address: sdkToken?.address.toLocaleLowerCase() ?? faker.finance.ethereumAddress(),
   market: null,
   project: tokenProjectBase(),
-}));
+}))
 ```
 
 To be able to use custom options, we have to pass a second type to the `createFixture` function that specifies the type of the custom options object. In the example above, when the `sdkToken` is provided, its field values will be used to create a fixture. Otherwise, field values will be generated with `faker` library.
@@ -74,20 +74,20 @@ To be able to use custom options, we have to pass a second type to the `createFi
 
 ```tsx
 type NftCollectionOptions = {
-  contractsCount: number;
-};
+  contractsCount: number
+}
 
 export const nftCollection = createFixture<NftCollection, NftCollectionOptions>({
   contractsCount: 2,
 })(({ contractsCount }) => ({
-  __typename: "NftCollection",
+  __typename: 'NftCollection',
   id: faker.datatype.uuid(),
   name: faker.lorem.word(),
   collectionId: faker.datatype.uuid(),
   isVerified: faker.datatype.boolean(),
   nftContracts: createArray(contractsCount, nftContract),
   image: image(),
-}));
+}))
 ```
 
 Thanks to custom options, we can easily manipulate the number of items in the array. `createArray` is a utility function taking the number of array items and a callback function called for all items in the resulting array.
@@ -108,7 +108,7 @@ const resolvers: Resolvers = {
     topTokens: () => [wethToken(), usdcToken()],
     tokens: () => [ethToken({ address: null })],
   },
-};
+}
 ```
 
 ###### Combining fixtures
@@ -118,7 +118,7 @@ Fixtures can be used to override fields in other fixtures as shown in the exampl
 ```tsx
 const collection = nftCollection({
   nftContracts: [nftContract({ chain: Chain.Ethereum })],
-});
+})
 ```
 
 ### 2.2. Mocking GraphQL query resolvers
@@ -146,14 +146,14 @@ const searchTokens = createArray(5, () =>
   token({
     // There is no isSpam field in the query document, so we remove it from the token object as it causes incorrect test results
     project: tokenProject({ isSpam: null }),
-  })
-);
+  }),
+)
 
 const resolvers: Resolvers = {
   Query: {
     searchTokens: () => searchTokens,
   },
-};
+}
 ```
 
 ###### With `queryResolvers`
@@ -163,7 +163,7 @@ There is no need to directly manipulate the fixture. We don't have to remove any
 ```tsx
 const { resolvers } = queryResolvers({
   searchTokens: () => createArray(5, token),
-});
+})
 ```
 
 ##### Using query result to create expected object
@@ -173,18 +173,18 @@ In this case, we use `resolved` property to access the resolved value of the spe
 ```tsx
 const { resolvers, resolved } = queryResolvers({
   searchTokens: () => createArray(5, token),
-});
+})
 
-const { result } = renderHook(() => useSearchTokens("", null, false), {
+const { result } = renderHook(() => useSearchTokens('', null, false), {
   resolvers,
-});
+})
 
 await waitFor(async () => {
   expect(result.current.data).toEqual(
     // wait until the resolved value is available and use it to create the expected
     // test result (using the fixture created with createArray(5, token) won't work
     // because of too many fields)
-    (await resolved.searchTokens).map(gqlTokenToCurrencyInfo)
-  );
-});
+    (await resolved.searchTokens).map(gqlTokenToCurrencyInfo),
+  )
+})
 ```

@@ -1,10 +1,9 @@
-import 'utilities/jest-package-mocks'
 import 'ui/jest-package-mocks'
 import 'uniswap/jest-package-mocks'
+import 'utilities/jest-package-mocks'
 import 'wallet/jest-package-mocks'
 
 import 'uniswap/src/i18n' // Uses real translations for tests
-
 
 jest.mock('uniswap/src/features/gas/hooks', () => ({
   useActiveGasStrategy: jest.fn().mockReturnValue({
@@ -35,13 +34,13 @@ jest.mock('ui/src/components/touchable/TouchableArea/TouchableArea', () => {
   return jest.requireActual('ui/src/components/touchable/TouchableArea/TouchableArea.web.tsx')
 })
 
-import crypto from "crypto"
-Object.defineProperty(global, "crypto", {
+import crypto from 'crypto'
+Object.defineProperty(global, 'crypto', {
   value: {
     getRandomValues: (arr) => crypto.randomBytes(arr.length),
     subtle: crypto.webcrypto.subtle,
   },
-});
+})
 
 // Use native locales
 jest.mock('utilities/src/device/locales', () => {

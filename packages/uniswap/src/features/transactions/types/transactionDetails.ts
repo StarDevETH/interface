@@ -26,7 +26,7 @@ export type TransactionListQueryResponse = NonNullable<
  * Marks if a transaction was initiated natively within app, or from external source.
  * External transactions are initiated from dapps, WC, uwulink, etc.
  */
-export enum TransactionOriginType  {
+export enum TransactionOriginType {
   Internal = 'internal',
   External = 'external',
 }
@@ -477,7 +477,10 @@ export type LiquidityDecreaseTransactionInfo = LiquidityTransactionInfoBase<Tran
 export type CreatePairTransactionInfo = LiquidityTransactionInfoBase<TransactionType.CreatePair>
 export type CreatePoolTransactionInfo = LiquidityTransactionInfoBase<TransactionType.CreatePool>
 export type MigrateV3LiquidityToV4TransactionInfo = LiquidityTransactionInfoBase<TransactionType.MigrateLiquidityV3ToV4>
-export type CollectFeesTransactionInfo = Optional<LiquidityTransactionInfoBase<TransactionType.CollectFees>, 'currency1AmountRaw' | 'currency1Id'>
+export type CollectFeesTransactionInfo = Optional<
+  LiquidityTransactionInfoBase<TransactionType.CollectFees>,
+  'currency1AmountRaw' | 'currency1Id'
+>
 
 export interface MigrateV2LiquidityToV3TransactionInfo extends BaseTransactionInfo {
   type: TransactionType.MigrateLiquidityV2ToV3
@@ -517,7 +520,7 @@ export type TransactionTypeInfo =
   | MigrateV2LiquidityToV3TransactionInfo
   | MigrateV3LiquidityToV4TransactionInfo
 
-  export function isConfirmedSwapTypeInfo(typeInfo: TransactionTypeInfo): typeInfo is ConfirmedSwapTransactionInfo {
+export function isConfirmedSwapTypeInfo(typeInfo: TransactionTypeInfo): typeInfo is ConfirmedSwapTransactionInfo {
   return Boolean(
     (typeInfo as ConfirmedSwapTransactionInfo).inputCurrencyAmountRaw &&
       (typeInfo as ConfirmedSwapTransactionInfo).outputCurrencyAmountRaw,

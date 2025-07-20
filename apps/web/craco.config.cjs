@@ -11,6 +11,8 @@ const commitHash = execSync('git rev-parse HEAD').toString().trim()
 const isProduction = process.env.NODE_ENV === 'production'
 const isDev =  process.env.NODE_ENV === 'development'
 
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
+
 process.env.REACT_APP_GIT_COMMIT_HASH = commitHash
 
 // Static analyses (linting and type check) are only necessary as part of local development.
@@ -94,6 +96,7 @@ module.exports = {
         process: 'process/browser.js',
         Buffer: ['buffer', 'Buffer'],
       }),
+      new NodePolyfillPlugin(),
       new RetryChunkLoadPlugin({
         cacheBust: `function() {
           return 'cache-bust=' + Date.now();
@@ -359,6 +362,19 @@ module.exports = {
         test: /\.stories\.[tj]sx?$|\.mdx$/,
         use: 'ignore-loader',
       })
+
+      // === INSERT THE FALLBACK CONFIGURATION HERE ===
+      webpackConfig.resolve.fallback = {
+        ...(webpackConfig.resolve.fallback || {}),
+        fs: false,                            // stub Node’s fs
+        os: require.resolve('os-browserify/browser'),
+        path: require.resolve('path-browserify'),
+        stream: require.resolve('stream-browserify'),
+        buffer: require.resolve('buffer/'),
+        crypto: require.resolve('crypto-browserify'),
+        process: require.resolve('process/browser'),
+        util: require.resolve('util/')
+      };
 
       return webpackConfig
     },

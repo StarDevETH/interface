@@ -25,9 +25,7 @@ module.exports = {
     // avoid native because wallet tests assume no .native.ts
     platforms: ['web', 'ios', 'android'],
   },
-  setupFiles: [
-    './jest-setup.js',
-  ],
+  setupFiles: ['./jest-setup.js'],
   // we map core to tamagui's test bundle, this just makes setup simpler for jest
   moduleNameMapper: {
     ...preset.moduleNameMapper,

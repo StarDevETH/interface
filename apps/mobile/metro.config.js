@@ -17,7 +17,6 @@ const workspaceRoot = path.resolve(mobileRoot, '../..')
 
 const watchFolders = [mobileRoot, `${workspaceRoot}/node_modules`, `${workspaceRoot}/packages`]
 
-
 const defaultConfig = getDefaultConfig(__dirname)
 
 const {

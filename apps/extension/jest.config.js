@@ -1,17 +1,6 @@
 const preset = require('../../config/jest-presets/jest/jest-preset')
 
-const fileExtensions = [
-  'eot',
-  'gif',
-  'jpeg',
-  'jpg',
-  'otf',
-  'png',
-  'ttf',
-  'woff',
-  'woff2',
-  'mp4',
-]
+const fileExtensions = ['eot', 'gif', 'jpeg', 'jpg', 'otf', 'png', 'ttf', 'woff', 'woff2', 'mp4']
 
 module.exports = {
   ...preset,
@@ -21,22 +10,15 @@ module.exports = {
       'babel-jest',
       {
         configFile: './src/test/babel.config.js',
-      }
+      },
     ],
   },
   moduleNameMapper: {
     ...preset.moduleNameMapper,
     '^react-native$': 'react-native-web',
   },
-  moduleFileExtensions: [
-    'web.js',
-    'web.jsx',
-    'web.ts',
-    'web.tsx',
-    ...fileExtensions,
-    ...preset.moduleFileExtensions,
-  ],
-  resolver: "<rootDir>/src/test/jest-resolver.js",
+  moduleFileExtensions: ['web.js', 'web.jsx', 'web.ts', 'web.tsx', ...fileExtensions, ...preset.moduleFileExtensions],
+  resolver: '<rootDir>/src/test/jest-resolver.js',
   displayName: 'Extension Wallet',
   collectCoverageFrom: [
     'src/app/**/*.{js,ts,tsx}',

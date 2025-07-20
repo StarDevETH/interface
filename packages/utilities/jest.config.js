@@ -6,11 +6,7 @@ const preset = require('../../config/jest-presets/jest/jest-preset')
 module.exports = {
   ...preset,
   displayName: 'Utilities Package',
-  collectCoverageFrom: [
-    'src/**/*.{js,ts,tsx}',
-    '!src/**/*.stories.**',
-    '!**/node_modules/**',
-  ],
+  collectCoverageFrom: ['src/**/*.{js,ts,tsx}', '!src/**/*.stories.**', '!**/node_modules/**'],
   moduleNameMapper: {
     ...preset.moduleNameMapper,
     '@tamagui/core': '@tamagui/core/native-test',
@@ -21,8 +17,5 @@ module.exports = {
       lines: 0,
     },
   },
-  setupFilesAfterEnv: [
-    '../../config/jest-presets/jest/setup.js',
-    './jest-setup.js',
-  ],
+  setupFilesAfterEnv: ['../../config/jest-presets/jest/setup.js', './jest-setup.js'],
 }

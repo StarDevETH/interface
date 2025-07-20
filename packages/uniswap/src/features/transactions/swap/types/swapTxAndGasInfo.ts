@@ -1,16 +1,32 @@
-import { Routing, CreateSwapRequest } from "uniswap/src/data/tradingApi/__generated__/index"
-import { GasEstimate } from "uniswap/src/data/tradingApi/types"
-import { GasFeeResult, ValidatedGasFeeResult, validateGasFeeResult } from "uniswap/src/features/gas/types"
-import { BridgeTrade, ClassicTrade, UniswapXTrade, UnwrapTrade, WrapTrade } from "uniswap/src/features/transactions/swap/types/trade"
-import { isBridge, isClassic, isUniswapX, isWrap } from "uniswap/src/features/transactions/swap/utils/routing"
-import { ValidatedPermit, ValidatedTransactionRequest } from "uniswap/src/features/transactions/swap/utils/trade"
-import { isInterface } from "utilities/src/platform"
-import { NonEmptyArray } from "utilities/src/primitives/array"
+import { CreateSwapRequest, Routing } from 'uniswap/src/data/tradingApi/__generated__/index'
+import { GasEstimate } from 'uniswap/src/data/tradingApi/types'
+import { GasFeeResult, ValidatedGasFeeResult, validateGasFeeResult } from 'uniswap/src/features/gas/types'
+import {
+  BridgeTrade,
+  ClassicTrade,
+  UniswapXTrade,
+  UnwrapTrade,
+  WrapTrade,
+} from 'uniswap/src/features/transactions/swap/types/trade'
+import { isBridge, isClassic, isUniswapX, isWrap } from 'uniswap/src/features/transactions/swap/utils/routing'
+import { ValidatedPermit, ValidatedTransactionRequest } from 'uniswap/src/features/transactions/swap/utils/trade'
+import { isInterface } from 'utilities/src/platform'
+import { NonEmptyArray } from 'utilities/src/primitives/array'
 
-export type SwapTxAndGasInfo = ClassicSwapTxAndGasInfo | UniswapXSwapTxAndGasInfo | BridgeSwapTxAndGasInfo | WrapSwapTxAndGasInfo
-export type ValidatedSwapTxContext = ValidatedClassicSwapTxAndGasInfo | ValidatedUniswapXSwapTxAndGasInfo | ValidatedBridgeSwapTxAndGasInfo | ValidatedWrapSwapTxAndGasInfo
+export type SwapTxAndGasInfo =
+  | ClassicSwapTxAndGasInfo
+  | UniswapXSwapTxAndGasInfo
+  | BridgeSwapTxAndGasInfo
+  | WrapSwapTxAndGasInfo
+export type ValidatedSwapTxContext =
+  | ValidatedClassicSwapTxAndGasInfo
+  | ValidatedUniswapXSwapTxAndGasInfo
+  | ValidatedBridgeSwapTxAndGasInfo
+  | ValidatedWrapSwapTxAndGasInfo
 
-export function isValidSwapTxContext(swapTxContext: SwapTxAndGasInfo | unknown): swapTxContext is ValidatedSwapTxContext {
+export function isValidSwapTxContext(
+  swapTxContext: SwapTxAndGasInfo | unknown,
+): swapTxContext is ValidatedSwapTxContext {
   // Validation fn prevents/future-proofs typeguard against illicit casts
   return validateSwapTxContext(swapTxContext) !== undefined
 }
@@ -61,7 +77,7 @@ export interface ClassicSwapTxAndGasInfo extends BaseSwapTxAndGasInfo {
   /**
    * `unsigned` is true if `txRequest` is undefined due to a permit signature needing to be signed first.
    * This occurs on interface where the user must be prompted to sign a permit before txRequest can be fetched.
-  */
+   */
   unsigned: boolean
   txRequests: PopulatedTransactionRequestArray | undefined
 }
@@ -89,29 +105,37 @@ interface BaseRequiredSwapTxContextFields {
   gasFee: ValidatedGasFeeResult
 }
 
-export type ValidatedClassicSwapTxAndGasInfo = Required<Omit<ClassicSwapTxAndGasInfo, 'includesDelegation'>> & BaseRequiredSwapTxContextFields & ({
-  unsigned: true
-  permit: PermitTypedData
-  txRequests: undefined
-} | {
-  unsigned: false
-  permit: PermitTransaction | undefined
-  txRequests: PopulatedTransactionRequestArray
-}) & Pick<ClassicSwapTxAndGasInfo, 'includesDelegation'>
+export type ValidatedClassicSwapTxAndGasInfo = Required<Omit<ClassicSwapTxAndGasInfo, 'includesDelegation'>> &
+  BaseRequiredSwapTxContextFields &
+  (
+    | {
+        unsigned: true
+        permit: PermitTypedData
+        txRequests: undefined
+      }
+    | {
+        unsigned: false
+        permit: PermitTransaction | undefined
+        txRequests: PopulatedTransactionRequestArray
+      }
+  ) &
+  Pick<ClassicSwapTxAndGasInfo, 'includesDelegation'>
 
+export type ValidatedWrapSwapTxAndGasInfo = Required<Omit<WrapSwapTxAndGasInfo, 'includesDelegation'>> &
+  BaseRequiredSwapTxContextFields & {
+    txRequests: PopulatedTransactionRequestArray
+  } & Pick<WrapSwapTxAndGasInfo, 'includesDelegation'>
 
-export type ValidatedWrapSwapTxAndGasInfo = Required<Omit<WrapSwapTxAndGasInfo, 'includesDelegation'>> & BaseRequiredSwapTxContextFields & {
-  txRequests: PopulatedTransactionRequestArray
-} & Pick<WrapSwapTxAndGasInfo, 'includesDelegation'>
+export type ValidatedBridgeSwapTxAndGasInfo = Required<Omit<BridgeSwapTxAndGasInfo, 'includesDelegation'>> &
+  BaseRequiredSwapTxContextFields & {
+    txRequests: PopulatedTransactionRequestArray
+  } & Pick<BridgeSwapTxAndGasInfo, 'includesDelegation'>
 
-export type ValidatedBridgeSwapTxAndGasInfo = Required<Omit<BridgeSwapTxAndGasInfo, 'includesDelegation'>> & BaseRequiredSwapTxContextFields & ({
-  txRequests: PopulatedTransactionRequestArray
-}) & Pick<BridgeSwapTxAndGasInfo, 'includesDelegation'>
-
-export type ValidatedUniswapXSwapTxAndGasInfo = Required<Omit<UniswapXSwapTxAndGasInfo, 'includesDelegation'>> & BaseRequiredSwapTxContextFields & {
-  // Permit should always be defined for UniswapX orders
-  permit: PermitTypedData
-} & Pick<UniswapXSwapTxAndGasInfo, 'includesDelegation'>
+export type ValidatedUniswapXSwapTxAndGasInfo = Required<Omit<UniswapXSwapTxAndGasInfo, 'includesDelegation'>> &
+  BaseRequiredSwapTxContextFields & {
+    // Permit should always be defined for UniswapX orders
+    permit: PermitTypedData
+  } & Pick<UniswapXSwapTxAndGasInfo, 'includesDelegation'>
 
 function validateSwapTxContext(swapTxContext: SwapTxAndGasInfo | unknown): ValidatedSwapTxContext | undefined {
   if (!isSwapTx(swapTxContext)) {
@@ -136,7 +160,6 @@ function validateSwapTxContext(swapTxContext: SwapTxAndGasInfo | unknown): Valid
       } else if (txRequests) {
         return { ...swapTxContext, trade, gasFee, unsigned, txRequests, permit: undefined, includesDelegation }
       }
-
     } else if (isBridge(swapTxContext)) {
       const { trade, txRequests, includesDelegation } = swapTxContext
       if (txRequests) {
@@ -156,5 +179,10 @@ function validateSwapTxContext(swapTxContext: SwapTxAndGasInfo | unknown): Valid
 }
 
 function isSwapTx(swapTxContext: unknown): swapTxContext is SwapTxAndGasInfo {
-  return typeof swapTxContext === 'object' && swapTxContext !== null && 'trade' in swapTxContext && 'routing' in swapTxContext;
+  return (
+    typeof swapTxContext === 'object' &&
+    swapTxContext !== null &&
+    'trade' in swapTxContext &&
+    'routing' in swapTxContext
+  )
 }

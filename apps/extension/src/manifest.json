@@ -25,45 +25,25 @@
     "service_worker": "background.js",
     "type": "module"
   },
-  "permissions": [
-    "alarms",
-    "notifications",
-    "sidePanel",
-    "storage",
-    "tabs"
-  ],
+  "permissions": ["alarms", "notifications", "sidePanel", "storage", "tabs"],
   "content_scripts": [
     {
       "id": "injected",
       "run_at": "document_start",
-      "matches": [
-        "http://127.0.0.1/*",
-        "http://localhost/*",
-        "https://*/*"
-      ],
-      "js": [
-        "injected.js"
-      ]
+      "matches": ["http://127.0.0.1/*", "http://localhost/*", "https://*/*"],
+      "js": ["injected.js"]
     },
     {
       "id": "ethereum",
       "run_at": "document_start",
-      "matches": [
-        "http://127.0.0.1/*",
-        "http://localhost/*",
-        "https://*/*"
-      ],
-      "js": [
-        "ethereum.js"
-      ],
+      "matches": ["http://127.0.0.1/*", "http://localhost/*", "https://*/*"],
+      "js": ["ethereum.js"],
       "world": "MAIN"
     }
   ],
   "externally_connectable": {
     "ids": [],
-    "matches": [
-      "THIS WILL BE OVERWRITTEN DURING THE BUILD PROCESS - See webpack.config.js"
-    ]
+    "matches": ["THIS WILL BE OVERWRITTEN DURING THE BUILD PROCESS - See webpack.config.js"]
   },
   "commands": {
     "_execute_action": {

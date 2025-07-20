@@ -9,9 +9,7 @@
       "../../../apps/mobile/src/components/explore/search/SearchPopularTokens.graphql",
       "../../../packages/uniswap/src/data/graphql/uniswap-data-api/queries.graphql"
     ],
-    "schemaSearchPaths": [
-      "../../../packages/uniswap/src/data/graphql/uniswap-data-api/schema.graphql"
-    ]
+    "schemaSearchPaths": ["../../../packages/uniswap/src/data/graphql/uniswap-data-api/schema.graphql"]
   },
   "output": {
     "testMocks": {

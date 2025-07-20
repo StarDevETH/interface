@@ -95,7 +95,7 @@
     "check:deps:usage": "depcheck",
     "env:local:download": "bash ../../scripts/downloadEnvLocal.sh m4dhqfltt3dokkqi3hqwigmf2a ../../.env",
     "env:local:upload": "bash ../../scripts/uploadEnvLocal.sh m4dhqfltt3dokkqi3hqwigmf2a ../../.env",
-    "format": "../../scripts/prettier.sh",
+    "format": "npx --no-install prettier --write \"**/*.{js,ts,tsx,css,json,md}\"",
     "lint": "NODE_OPTIONS=--max_old_space_size=8192 eslint . --ext ts,tsx --max-warnings=0",
     "lint:fix": "NODE_OPTIONS=--max-old-space-size=8192 eslint . --ext ts,tsx --fix",
     "start": "webpack serve --config webpack.config.js",

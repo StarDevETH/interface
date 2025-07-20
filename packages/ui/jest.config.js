@@ -1,8 +1,8 @@
 /* eslint-env es6, es2017, es2018 */
 
-const preset = require('../../config/jest-presets/jest/jest-preset');
+const preset = require('../../config/jest-presets/jest/jest-preset')
 
-const { NODE_ENV } = process.env;
+const { NODE_ENV } = process.env
 
 /**
  * Babel config for the UI package. This is inside the jest config because
@@ -23,7 +23,7 @@ const babelConfig = {
     // React Native Reanimated plugin fix
     '@babel/plugin-proposal-export-namespace-from',
   ].filter(Boolean),
-};
+}
 
 module.exports = {
   ...preset,
@@ -38,11 +38,7 @@ module.exports = {
     ],
   },
   displayName: 'UI Package',
-  collectCoverageFrom: [
-    'src/**/*.{js,ts,tsx}',
-    '!src/**/*.stories.**',
-    '!**/node_modules/**',
-  ],
+  collectCoverageFrom: ['src/**/*.{js,ts,tsx}', '!src/**/*.stories.**', '!**/node_modules/**'],
   coverageThreshold: {
     global: {
       lines: 0,
@@ -58,4 +54,4 @@ module.exports = {
     './jest-setup.js',
     '../../node_modules/react-native-gesture-handler/jestSetup.js',
   ],
-};
+}

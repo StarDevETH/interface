@@ -2,15 +2,8 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "display": "Web App",
   "extends": "../../config/tsconfig/nextjs.json",
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "**/*.json",
-    "../../declarations.d.ts",
-  ],
-  "exclude": [
-    "node_modules"
-  ],
+  "include": ["**/*.ts", "**/*.tsx", "**/*.json", "../../declarations.d.ts"],
+  "exclude": ["node_modules"],
   "references": [
     {
       "path": "../../packages/ui"
@@ -27,9 +20,6 @@
   ],
   "compilerOptions": {
     "baseUrl": "./",
-    "types": [
-      "chrome",
-      "jest"
-    ]
+    "types": ["chrome", "jest"]
   }
 }

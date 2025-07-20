@@ -4,7 +4,7 @@ This package holds a component library and themes that can be used across all ap
 
 ## UI Package Philosophy
 
-The `ui` package contains all low level components that are shared between apps. It should *not* contain components that are specific to any one app or Uniswap business logic. Each component should be guided by the following principles:
+The `ui` package contains all low level components that are shared between apps. It should _not_ contain components that are specific to any one app or Uniswap business logic. Each component should be guided by the following principles:
 
 - All components should be compatible with all platforms.
 - Wrap as many implementation details as possible, including any direct exports from Tamagui.
@@ -54,9 +54,7 @@ Theming is applied through two primary methods:
 To force a specific theme usage, the `Theme` wrapper will ensure other theme elements pick up the specific theme.
 
 ```javascript
-<Theme name="dark">
-  ...
-</Theme>
+<Theme name="dark">...</Theme>
 ```
 
 ### Screen Size Differences
@@ -66,10 +64,7 @@ All breakpoints for both vertical and horizontal sizing have been defined in `pa
 To account for screen size references, components take in props to adapt custom style per breakpoint, like so:
 
 ```javascript
-<Flex
-  margin="20"
-  $short={{ margin: 10 }}
->
+<Flex margin="20" $short={{ margin: 10 }}>
   ...
 </Flex>
 ```

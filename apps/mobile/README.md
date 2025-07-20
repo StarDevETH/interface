@@ -7,28 +7,28 @@ If you have suggestions on how we can improve the app, or would like to report a
 ## Table of contents
 
 - [Setup](#setup)
- - [Packages and Software](#packages-and-software)
- - [iOS Setup](#ios-setup)
-   - [Xcode](#xcode)
-   - [Add Xcode Command Line Tools](#add-xcode-command-line-tools)
- - [Android Setup](#android-setup)
-   - [Deploying to Physical Android Device](#deploying-to-physical-android-device)
+- [Packages and Software](#packages-and-software)
+- [iOS Setup](#ios-setup)
+  - [Xcode](#xcode)
+  - [Add Xcode Command Line Tools](#add-xcode-command-line-tools)
+- [Android Setup](#android-setup)
+  - [Deploying to Physical Android Device](#deploying-to-physical-android-device)
 - [Development](#development)
- - [Environment variables](#environment-variables)
- - [Compile contract ABI types](#compile-contract-abi-types) 
- - [Run the app](#run-the-app)
- - [Using Radon IDE](#using-radon-ide-vscodecursor-extension)
-   - [Running on a Physical iOS Device](#running-on-a-physical-ios-device)
+- [Environment variables](#environment-variables)
+- [Compile contract ABI types](#compile-contract-abi-types)
+- [Run the app](#run-the-app)
+- [Using Radon IDE](#using-radon-ide-vscodecursor-extension)
+  - [Running on a Physical iOS Device](#running-on-a-physical-ios-device)
 - [Important Libraries and Tools](#important-libraries-and-tools)
 - [Migrations](#migrations)
 - [Testing & Performance](#testing--performance)
- - [Build local app files](./docs/build-app-files.md)
- - [E2E testing](./docs/e2e-testing.md)
- - [Performance monitoring](./docs/perf-monitoring.md)
+- [Build local app files](./docs/build-app-files.md)
+- [E2E testing](./docs/e2e-testing.md)
+- [Performance monitoring](./docs/perf-monitoring.md)
 - [Troubleshooting](#troubleshooting)
- - [Common issues](#common-issues)
- - [Common fixes](#common-fixes)
- - [Shell profile setup](#shell-profile-setup)
+- [Common issues](#common-issues)
+- [Common fixes](#common-fixes)
+- [Shell profile setup](#shell-profile-setup)
 
 ## Setup
 
@@ -54,95 +54,95 @@ Note: If you are indeed using an Apple Silicon Mac, we recommend setting up your
 
 3. Install `node`
 
-    Run the following command in your terminal:
+   Run the following command in your terminal:
 
-    ```bash
-    nvm install 18
-    nvm use 18
-    ```
+   ```bash
+   nvm install 18
+   nvm use 18
+   ```
 
-    Quit and re-open the terminal, and then run to confirm that v18 is running
+   Quit and re-open the terminal, and then run to confirm that v18 is running
 
-    ```bash
-    > node -v
-    v18.20.4
-    ```
+   ```bash
+   > node -v
+   v18.20.4
+   ```
 
-    Alternatively, to automatically try to find and use an `.nvmrc` file in your workspace, per the [official nvm docs for zsh](https://github.com/nvm-sh/nvm?tab=readme-ov-file#zsh), add the following script to your shell (typically `~/.zshrc` on mac):
+   Alternatively, to automatically try to find and use an `.nvmrc` file in your workspace, per the [official nvm docs for zsh](https://github.com/nvm-sh/nvm?tab=readme-ov-file#zsh), add the following script to your shell (typically `~/.zshrc` on mac):
 
-    ```zsh
-    # place this after nvm initialization!
-    autoload -U add-zsh-hook
+   ```zsh
+   # place this after nvm initialization!
+   autoload -U add-zsh-hook
 
-    load-nvmrc() {
-      local nvmrc_path
-      nvmrc_path="$(nvm_find_nvmrc)"
+   load-nvmrc() {
+     local nvmrc_path
+     nvmrc_path="$(nvm_find_nvmrc)"
 
-      if [ -n "$nvmrc_path" ]; then
-        local nvmrc_node_version
-        nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+     if [ -n "$nvmrc_path" ]; then
+       local nvmrc_node_version
+       nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
 
-        if [ "$nvmrc_node_version" = "N/A" ]; then
-          nvm install
-        elif [ "$nvmrc_node_version" != "$(nvm version)" ]; then
-          nvm use
-          # Optionally, add `>/dev/null 2>&1` after `nvm use` to suppress output
-        fi
-      elif [ -n "$(PWD=$OLDPWD nvm_find_nvmrc)" ] && [ "$(nvm version)" != "$(nvm version default)" ]; then
-        echo "Reverting to nvm default version"
-        nvm use default
-      fi
-    }
+       if [ "$nvmrc_node_version" = "N/A" ]; then
+         nvm install
+       elif [ "$nvmrc_node_version" != "$(nvm version)" ]; then
+         nvm use
+         # Optionally, add `>/dev/null 2>&1` after `nvm use` to suppress output
+       fi
+     elif [ -n "$(PWD=$OLDPWD nvm_find_nvmrc)" ] && [ "$(nvm version)" != "$(nvm version default)" ]; then
+       echo "Reverting to nvm default version"
+       nvm use default
+     fi
+   }
 
-    add-zsh-hook chpwd load-nvmrc
-    load-nvmrc
-    ```
+   add-zsh-hook chpwd load-nvmrc
+   load-nvmrc
+   ```
 
 4. Install `yarn`. We use yarn as our package manager and to run scripts.
 
-    Run the following command to install it (npm comes with node, so it should work if the above step has been completed correctly)
+   Run the following command to install it (npm comes with node, so it should work if the above step has been completed correctly)
 
-    ```bash
-    npm install --global yarn
-    ```
+   ```bash
+   npm install --global yarn
+   ```
 
-    Check version to verify installation
+   Check version to verify installation
 
-    ```bash
-    > yarn -v
-    3.2.3
-    ```
+   ```bash
+   > yarn -v
+   3.2.3
+   ```
 
 5. Install `ruby`
 
-    Use `rbenv` to install a specific version of `ruby`:
+   Use `rbenv` to install a specific version of `ruby`:
 
-    ```bash
-    brew install rbenv ruby-build
-    ```
+   ```bash
+   brew install rbenv ruby-build
+   ```
 
-    Run init and follow the instructions to complete the installation.
+   Run init and follow the instructions to complete the installation.
 
-    ```bash
-    rbenv init
-    ```
+   ```bash
+   rbenv init
+   ```
 
-    After following the instructions, make sure you `source` your `.zshrc` or `.bash_profile`, or start a new terminal session.
+   After following the instructions, make sure you `source` your `.zshrc` or `.bash_profile`, or start a new terminal session.
 
-    Install a version of `ruby` and set as the default.
+   Install a version of `ruby` and set as the default.
 
-    ```bash
-    rbenv install 3.2.2
-    rbenv global 3.2.2
-    ```
+   ```bash
+   rbenv install 3.2.2
+   rbenv global 3.2.2
+   ```
 
 6. Install cocoapods and fastlane using bundler (make sure to run in `mobile`)
 
-    ```bash
-    bundle install
-    ```
+   ```bash
+   bundle install
+   ```
 
-    Note: In the case you run into permission issues when installing ruby, [you may need to add some permissions to make it work.](https://stackoverflow.com/a/50181250)
+   Note: In the case you run into permission issues when installing ruby, [you may need to add some permissions to make it work.](https://stackoverflow.com/a/50181250)
 
 ### iOS Setup
 
@@ -165,25 +165,25 @@ Select the version that pops up.
 1. Install [Android Studio](https://developer.android.com/studio)
 2. Install the JDK. Taken from [RN instructions](https://reactnative.dev/docs/set-up-your-environment?platform=android)
 
-    ```bash
-    brew install --cask zulu@17
+   ```bash
+   brew install --cask zulu@17
 
-    # Get path to where cask was installed to double-click installer
-    brew info --cask zulu@17
-    ```
+   # Get path to where cask was installed to double-click installer
+   brew info --cask zulu@17
+   ```
 
-    Add the following to your .rc file
-    `export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home`
+   Add the following to your .rc file
+   `export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home`
 
-    [Also verify that in Android Studio it is using the correct JDK.](https://developer.android.com/build/jdks#jdk-config-in-studio)
+   [Also verify that in Android Studio it is using the correct JDK.](https://developer.android.com/build/jdks#jdk-config-in-studio)
 
 3. Add the following to your `.rc` file
 
-    ```bash
-    export ANDROID_HOME=$HOME/Library/Android/sdk
-    export PATH=$PATH:$ANDROID_HOME/emulator
-    export PATH=$PATH:$ANDROID_HOME/platform-tools
-    ```
+   ```bash
+   export ANDROID_HOME=$HOME/Library/Android/sdk
+   export PATH=$PATH:$ANDROID_HOME/emulator
+   export PATH=$PATH:$ANDROID_HOME/platform-tools
+   ```
 
 4. Install an emulator. Android Studio should have an emulator already, but if not:
    Open the project at `universe/apps/mobile/android`
@@ -202,15 +202,15 @@ Select the version that pops up.
 
 2. Connect device and Allow communication
 
-    - Pop up message must appear and enable transfer.
-    - Run the following command to verify your device has been detected: `adb devices`
+   - Pop up message must appear and enable transfer.
+   - Run the following command to verify your device has been detected: `adb devices`
 
 3. In your terminal run
 
-    ```bash
-    adb reverse tcp:8081 tcp:8081
-    yarn mobile android
-    ```
+   ```bash
+   adb reverse tcp:8081 tcp:8081
+   yarn mobile android
+   ```
 
 If it fails, quit the terminal and run it directly from Android Studio. Once you get the first build running, retry the previous step.
 
@@ -287,7 +287,6 @@ We use `redux-persist` to persist the Redux state between user sessions. Most of
 - [E2E testing](./docs/e2e-testing.md)
 - [Performance monitoring](./docs/perf-monitoring.md)
 
-
 ## Troubleshooting
 
 ### Common issues
@@ -347,3 +346,4 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
+```

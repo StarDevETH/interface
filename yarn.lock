@@ -221,16 +221,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@apidevtools/json-schema-ref-parser@npm:^10.1.0":
-  version: 10.1.0
-  resolution: "@apidevtools/json-schema-ref-parser@npm:10.1.0"
+"@apidevtools/json-schema-ref-parser@npm:11.7.3":
+  version: 11.7.3
+  resolution: "@apidevtools/json-schema-ref-parser@npm:11.7.3"
   dependencies:
     "@jsdevtools/ono": ^7.1.3
-    "@types/json-schema": ^7.0.11
-    "@types/lodash.clonedeep": ^4.5.7
+    "@types/json-schema": ^7.0.15
     js-yaml: ^4.1.0
-    lodash.clonedeep: ^4.5.0
-  checksum: 6220dea1ffa2f1b34da54583cf447cc97c51e25b96c10705e858f42c8290bc775b5821182282493a8f99ec6e0dae8f01ccd865d547aa29c1a6be6a38713c4571
+  checksum: 3496edfb2c3d2f9a5a7a49795b4d560f1e4957015aef473775f4b5f2db55a4ddfb3778783401ddd24e7db2930a67a370fb8c68840d8bae0a2a581e0e57fc2f58
   languageName: node
   linkType: hard
 
@@ -15981,7 +15979,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/json-schema@npm:*, @types/json-schema@npm:^7.0.11, @types/json-schema@npm:^7.0.12, @types/json-schema@npm:^7.0.4, @types/json-schema@npm:^7.0.5, @types/json-schema@npm:^7.0.8, @types/json-schema@npm:^7.0.9":
+"@types/json-schema@npm:*, @types/json-schema@npm:^7.0.12, @types/json-schema@npm:^7.0.15, @types/json-schema@npm:^7.0.4, @types/json-schema@npm:^7.0.5, @types/json-schema@npm:^7.0.8, @types/json-schema@npm:^7.0.9":
   version: 7.0.15
   resolution: "@types/json-schema@npm:7.0.15"
   checksum: 97ed0cb44d4070aecea772b7b2e2ed971e10c81ec87dd4ecc160322ffa55ff330dace1793489540e3e318d90942064bb697cc0f8989391797792d919737b3b98
@@ -16011,16 +16009,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash.clonedeep@npm:^4.5.7":
-  version: 4.5.9
-  resolution: "@types/lodash.clonedeep@npm:4.5.9"
-  dependencies:
-    "@types/lodash": "*"
-  checksum: ef85512b7dce7a4f981a818ae44d11982907e1f26b5b26bedf0957c35e8591eb8e1d24fa31ca851d4b40e0a1ee88563853d762412691fe5f357e8335cead2325
-  languageName: node
-  linkType: hard
-
-"@types/lodash@npm:*, @types/lodash@npm:^4.14.172, @types/lodash@npm:^4.14.53":
+"@types/lodash@npm:^4.14.172, @types/lodash@npm:^4.14.53":
   version: 4.14.202
   resolution: "@types/lodash@npm:4.14.202"
   checksum: a91acf3564a568c6f199912f3eb2c76c99c5a0d7e219394294213b3f2d54f672619f0fde4da22b29dc5d4c31457cd799acc2e5cb6bd90f9af04a1578483b6ff7
@@ -17138,6 +17127,7 @@ __metadata:
     cids: 1.1.6
     concurrently: 8.2.2
     copy-to-clipboard: 3.3.3
+    crypto-browserify: 3.12.1
     d3: 7.6.1
     date-fns: 2.30.0
     depcheck: 1.4.7
@@ -17171,6 +17161,8 @@ __metadata:
     multicodec: 3.2.1
     multihashes: 4.0.2
     nock: 13.3.3
+    node-polyfill-webpack-plugin: 4.1.0
+    os-browserify: 0.3.0
     path-browserify: 1.0.1
     playwright: 1.49.1
     png-ts: 0.0.3
@@ -17208,6 +17200,7 @@ __metadata:
     start-server-and-test: 2.0.0
     storybook: 8.5.2
     storybook-addon-pseudo-states: 4.0.2
+    stream-browserify: 3.0.0
     styled-components: 5.3.11
     swc-loader: 0.2.6
     terser: 5.24.0
@@ -17220,6 +17213,7 @@ __metadata:
     ui: "workspace:^"
     uniswap: "workspace:^"
     use-resize-observer: 9.1.0
+    util: 0.12.5
     utilities: "workspace:^"
     uuid: 9.0.0
     video-extensions: 1.2.0
@@ -21053,7 +21047,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"browserify-zlib@npm:^0.2.0":
+"browserify-zlib@npm:0.2.0, browserify-zlib@npm:^0.2.0":
   version: 0.2.0
   resolution: "browserify-zlib@npm:0.2.0"
   dependencies:
@@ -23031,7 +23025,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"crypto-browserify@npm:^3.12.0, crypto-browserify@npm:^3.12.1":
+"crypto-browserify@npm:3.12.1, crypto-browserify@npm:^3.12.0, crypto-browserify@npm:^3.12.1":
   version: 3.12.1
   resolution: "crypto-browserify@npm:3.12.1"
   dependencies:
@@ -33935,13 +33929,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash.clonedeep@npm:^4.5.0":
-  version: 4.5.0
-  resolution: "lodash.clonedeep@npm:4.5.0"
-  checksum: 92c46f094b064e876a23c97f57f81fbffd5d760bf2d8a1c61d85db6d1e488c66b0384c943abee4f6af7debf5ad4e4282e74ff83177c9e63d8ff081a4837c3489
-  languageName: node
-  linkType: hard
-
 "lodash.debounce@npm:4.0.8, lodash.debounce@npm:^4.0.8":
   version: 4.0.8
   resolution: "lodash.debounce@npm:4.0.8"
@@ -36049,6 +36036,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"node-polyfill-webpack-plugin@npm:4.1.0":
+  version: 4.1.0
+  resolution: "node-polyfill-webpack-plugin@npm:4.1.0"
+  dependencies:
+    node-stdlib-browser: ^1.3.0
+    type-fest: ^4.27.0
+  peerDependencies:
+    webpack: ">=5"
+  checksum: b8282db124a8f0c3439dbf0844654770eeb22f4eb2564e727c8a428fa5d74ec691b80842ed9c3eb8fbf3f3719752871fcc9e52125e02a11c8f4efd27783593ab
+  languageName: node
+  linkType: hard
+
 "node-preload@npm:^0.2.1":
   version: 0.2.1
   resolution: "node-preload@npm:0.2.1"
@@ -36083,7 +36082,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-stdlib-browser@npm:^1.2.0":
+"node-stdlib-browser@npm:^1.2.0, node-stdlib-browser@npm:^1.3.0":
   version: 1.3.1
   resolution: "node-stdlib-browser@npm:1.3.1"
   dependencies:
@@ -36730,7 +36729,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"os-browserify@npm:^0.3.0":
+"os-browserify@npm:0.3.0, os-browserify@npm:^0.3.0":
   version: 0.3.0
   resolution: "os-browserify@npm:0.3.0"
   checksum: 16e37ba3c0e6a4c63443c7b55799ce4066d59104143cb637ecb9fce586d5da319cdca786ba1c867abbe3890d2cbf37953f2d51eea85e20dd6c4570d6c54bfebf
@@ -43620,7 +43619,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stream-browserify@npm:^3.0.0":
+"stream-browserify@npm:3.0.0, stream-browserify@npm:^3.0.0":
   version: 3.0.0
   resolution: "stream-browserify@npm:3.0.0"
   dependencies:
@@ -45722,6 +45721,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"type-fest@npm:^4.27.0":
+  version: 4.41.0
+  resolution: "type-fest@npm:4.41.0"
+  checksum: 7055c0e3eb188425d07403f1d5dc175ca4c4f093556f26871fe22041bc93d137d54bef5851afa320638ca1379106c594f5aa153caa654ac1a7f22c71588a4e80
+  languageName: node
+  linkType: hard
+
 "type-is@npm:~1.6.18":
   version: 1.6.18
   resolution: "type-is@npm:1.6.18"
@@ -46388,6 +46394,8 @@ __metadata:
     "@types/inquirer": 9.0.8
     "@typescript-eslint/eslint-plugin": 6.20.0
     "@typescript-eslint/parser": 6.20.0
+    browserify-zlib: 0.2.0
+    buffer: 6.0.3
     clipboardy: 4.0.0
     danger: 11.2.6
     depcheck: 1.4.7
@@ -46399,11 +46407,17 @@ __metadata:
     js-yaml: 4.1.0
     knip: 5.50.5
     moti: 0.29.0
+    node-polyfill-webpack-plugin: 4.1.0
+    os-browserify: 0.3.0
+    path-browserify: 1.0.1
     prettier: 3.3.2
     prettier-plugin-organize-imports: 3.2.4
+    process: 0.11.10
+    stream-browserify: 3.0.0
     syncpack: 8.5.14
     turbo: 1.13.4
     turbo-ignore: 1.11.3
+    util: 0.12.5
     wrangler: 4.20.0
   languageName: unknown
   linkType: soft
@@ -46754,7 +46768,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"util@npm:^0.12.0, util@npm:^0.12.4, util@npm:^0.12.5":
+"util@npm:0.12.5, util@npm:^0.12.0, util@npm:^0.12.4, util@npm:^0.12.5":
   version: 0.12.5
   resolution: "util@npm:0.12.5"
   dependencies:

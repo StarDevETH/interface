@@ -2,10 +2,10 @@
 // For example: https://reactnavigation.org/docs/testing/
 
 import 'core-js' // necessary so setImmediate works in tests
-import 'utilities/jest-package-mocks'
-import 'uniswap/jest-package-mocks'
-import 'wallet/jest-package-mocks'
 import 'ui/jest-package-mocks'
+import 'uniswap/jest-package-mocks'
+import 'utilities/jest-package-mocks'
+import 'wallet/jest-package-mocks'
 
 import 'uniswap/src/i18n' // Uses real translations for tests
 
@@ -33,9 +33,9 @@ jest.mock('react-native-onesignal', () => {
         getOnesignalId: jest.fn(() => 'dummyUserId'),
         pushSubscription: {
           getTokenAsync: jest.fn(() => 'dummyPushToken'),
-        }
+        },
       },
-    }
+    },
   }
 })
 
@@ -90,7 +90,7 @@ jest.mock('react-native/Libraries/Linking/Linking', () => ({
   getInitialURL: jest.fn(),
 }))
 
-jest.mock("react-native-bootsplash", () => {
+jest.mock('react-native-bootsplash', () => {
   return {
     hide: jest.fn().mockResolvedValue(),
     isVisible: jest.fn().mockResolvedValue(false),
@@ -99,9 +99,7 @@ jest.mock("react-native-bootsplash", () => {
       logo: { source: 0 },
       brand: { source: 0 },
     }),
-  };
-});
+  }
+})
 
-jest.mock("react-native-keyboard-controller", () =>
-  require("react-native-keyboard-controller/jest"),
-);
+jest.mock('react-native-keyboard-controller', () => require('react-native-keyboard-controller/jest'))
