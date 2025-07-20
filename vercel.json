@@ -5,6 +5,8 @@
       "destination": "/"
     }
   ],
+  "buildCommand": "yarn workspace @uniswap/interface build:production",
+  "outputDirectory": "apps/web/build",
   "headers": [
     {
       "source": "/index.html",

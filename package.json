@@ -132,6 +132,7 @@
   },
   "scripts": {
     "extension": "yarn workspace @uniswap/extension",
+    "build": "yarn workspace @uniswap/interface build:production",
     "g:build": "turbo run build --concurrency=100%",
     "g:build:storybook": "turbo run storybook:build --force --concurrency=100%",
     "g:check:deps:usage": " depcheck && turbo run check:deps:usage",
