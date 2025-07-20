@@ -128,7 +128,8 @@
     "vite": "npm:rolldown-vite@6.3.18",
     "webpack": "5.90.0",
     "xml2js": "0.5.0",
-    "yaml": "2.2.2"
+    "yaml": "2.2.2",
+    "@cloudflare/workerd-linux-64": "1.20240402.0"
   },
   "scripts": {
     "extension": "yarn workspace @uniswap/extension",
@@ -176,7 +177,7 @@
     "lfg": "yarn g:prepare && yarn mobile env:local:download && yarn extension env:local:download && yarn g:build && yarn mobile pod && yarn mobile ios",
     "mobile": "yarn workspace @uniswap/mobile",
     "local:check": "./scripts/local-version-check.sh",
-    "postinstall": "husky install && yarn g:prepare",
+    "postinstall": "WORKERD_SKIP_POSTINSTALL=1 husky install && yarn g:prepare",
     "tradingapi:schema": "yarn workspace uniswap tradingapi:schema",
     "tradingapi:generate": "yarn workspace uniswap tradingapi:generate",
     "ui": "yarn workspace ui",
