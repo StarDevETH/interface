@@ -70,3 +70,4 @@ CLAUDE.local.md
 # cursor
 .cursor/mcp.json
 .cursor/rules/local-workflow.mdc
+packages/trading-api-server/dist/

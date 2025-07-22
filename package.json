@@ -64,6 +64,7 @@
     "metro-resolver": "Pinning previous version because of excessive logging thats not fixed until RN 0.79 https://github.com/facebook/hermes/commit/c615b115dfa471c108256982ce07f10adee63667"
   },
   "resolutions": {
+    "@cloudflare/workerd-linux-64": "1.20240402.0",
     "@apidevtools/json-schema-ref-parser": "11.7.3",
     "@apollo/client": "3.10.4",
     "@babel/preset-env": "7.26.0",
@@ -132,7 +133,7 @@
   },
   "scripts": {
     "extension": "yarn workspace @uniswap/extension",
-    "build": "yarn workspace @uniswap/interface build:production",
+    "build": "yarn workspace web build",
     "g:build": "turbo run build --concurrency=100%",
     "g:build:storybook": "turbo run storybook:build --force --concurrency=100%",
     "g:check:deps:usage": " depcheck && turbo run check:deps:usage",
@@ -176,7 +177,7 @@
     "lfg": "yarn g:prepare && yarn mobile env:local:download && yarn extension env:local:download && yarn g:build && yarn mobile pod && yarn mobile ios",
     "mobile": "yarn workspace @uniswap/mobile",
     "local:check": "./scripts/local-version-check.sh",
-    "postinstall": "husky install && yarn g:prepare",
+    "postinstall": "WORKERD_SKIP_POSTINSTALL=1 true",
     "tradingapi:schema": "yarn workspace uniswap tradingapi:schema",
     "tradingapi:generate": "yarn workspace uniswap tradingapi:generate",
     "ui": "yarn workspace ui",
@@ -193,12 +194,13 @@
   "workspaces": [
     "apps/*",
     "packages/*",
-    "config/*"
+    "config/*",
+    "packages/trading-api-server"
   ],
   "devDependencies": {
     "browserify-zlib": "0.2.0",
     "buffer": "6.0.3",
-    "node-gyp": "11.2.0",
+    "node-gyp": "^10.0.0",
     "node-polyfill-webpack-plugin": "4.1.0",
     "os-browserify": "0.3.0",
     "path-browserify": "1.0.1",
