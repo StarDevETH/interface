@@ -1,5 +1,5 @@
 {
-  "account.authHeader.claimReward": "Claim {{amount}} reward",
+  "account.authHeader.claimReward": "Claim {{amount }} reward",
   "account.cloud.backup.subtitle": "There are multiple recovery phrases backed up to your {{cloudProviderName}}.",
   "account.cloud.backup.title": "Select a backup to restore",
   "account.cloud.button.restore.android": "Restore from Google Drive",
@@ -866,8 +866,8 @@
   "forceUpgrade.title.recommendedStatus": "A new version is available",
   "globalPreferences.title": "Global preferences",
   "hero.scroll": "Scroll to learn more",
-  "hero.subtitle": "The largest onchain marketplace. Buy and sell crypto on Ethereum and 12+ other chains.",
-  "hero.swap.title": "Hello, <br/> anywhere.",
+  "hero.subtitle": " The community DEX to trade memes or the most supreme digital assets—while every swap deepens on‑chain liquidity.",
+  "hero.swap.title": "Swap Anything. <br/> Own Everything.",
   "hidden.nfts.info.banner.text": "Learn more about hidden NFTs",
   "hidden.nfts.info.text.button": "Hidden NFTs ({{numHidden}})",
   "hidden.nfts.info.text.extension": "These are potential scams and NFTs you’ve hidden. You can right click on an NFT to unhide it.",

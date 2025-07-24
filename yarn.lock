@@ -16157,6 +16157,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/prismjs@npm:^1.26.0":
+  version: 1.26.5
+  resolution: "@types/prismjs@npm:1.26.5"
+  checksum: d208b04ee9b6de6b2dc916439a81baa47e64ab3659a66d3d34bc3e42faccba9d4b26f590d76f97f7978d1dfaafa0861f81172b1e3c68696dd7a42d73aaaf5b7b
+  languageName: node
+  linkType: hard
+
 "@types/prop-types@npm:*":
   version: 15.7.4
   resolution: "@types/prop-types@npm:15.7.4"
@@ -22167,6 +22174,13 @@ __metadata:
   version: 1.2.1
   resolution: "clsx@npm:1.2.1"
   checksum: 30befca8019b2eb7dbad38cff6266cf543091dae2825c856a62a8ccf2c3ab9c2907c4d12b288b73101196767f66812365400a227581484a05f968b0307cfaf12
+  languageName: node
+  linkType: hard
+
+"clsx@npm:^2.0.0":
+  version: 2.1.1
+  resolution: "clsx@npm:2.1.1"
+  checksum: acd3e1ab9d8a433ecb3cc2f6a05ab95fe50b4a3cfc5ba47abb6cbf3754585fcb87b84e90c822a1f256c4198e3b41c7f6c391577ffc8678ad587fc0976b24fd57
   languageName: node
   linkType: hard
 
@@ -38930,6 +38944,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"prism-react-renderer@npm:^2.4.0":
+  version: 2.4.1
+  resolution: "prism-react-renderer@npm:2.4.1"
+  dependencies:
+    "@types/prismjs": ^1.26.0
+    clsx: ^2.0.0
+  peerDependencies:
+    react: ">=16.0.0"
+  checksum: ddd5490a1335629addde9535db7872f0aee8dbce048818dd6e4c3972c779780af13d669c12d3f2fbb54c5b22d1578e50945099ef1a24dd445f33774e87d85e6e
+  languageName: node
+  linkType: hard
+
 "proc-log@npm:^3.0.0":
   version: 3.0.0
   resolution: "proc-log@npm:3.0.0"
@@ -39767,6 +39793,20 @@ __metadata:
   peerDependencies:
     react: ">=15.0.0"
   checksum: 3bb042bb7cd48909491a5f92b8e7b2fb0417d69ad24bf04dbe1ed7a308cc7dfe6e3c9b5550e7b9016ee6bef61829b92e7f3a355ed1b867affd251bd518bcdd90
+  languageName: node
+  linkType: hard
+
+"react-live@npm:4.1.8":
+  version: 4.1.8
+  resolution: "react-live@npm:4.1.8"
+  dependencies:
+    prism-react-renderer: ^2.4.0
+    sucrase: ^3.35.0
+    use-editable: ^2.3.3
+  peerDependencies:
+    react: ">=18.0.0"
+    react-dom: ">=18.0.0"
+  checksum: f5d44f7a8dea44eb1ed26a9c4b5f6c7c70031bd210946753c1250e31e2272bd4a1e6b8c10371ced4fa782c563a7c546526f8c3ceb1dbda833c814569cc67b140
   languageName: node
   linkType: hard
 
@@ -46414,6 +46454,7 @@ __metadata:
     prettier: 3.3.2
     prettier-plugin-organize-imports: 3.2.4
     process: 0.11.10
+    react-live: 4.1.8
     stream-browserify: 3.0.0
     syncpack: 8.5.14
     turbo: 1.13.4
@@ -46655,6 +46696,15 @@ __metadata:
     "@types/react":
       optional: true
   checksum: 4da1c82d7a2409cee6c882748a40f4a083decf238308bf12c3d0166f0e338f8d512f37b8d11987eb5a421f14b9b5b991edf3e11ed25c3bb7a6559081f8359b44
+  languageName: node
+  linkType: hard
+
+"use-editable@npm:^2.3.3":
+  version: 2.3.3
+  resolution: "use-editable@npm:2.3.3"
+  peerDependencies:
+    react: ">= 16.8.0"
+  checksum: cc63f474dc097242522361fbabf824b307e13fbe64a382a21a5e5e36d34bc64098b8a00467142ff9ba71bf35168d3ce3a1768435d87e2239b0311af18f758709
   languageName: node
   linkType: hard
 

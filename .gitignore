@@ -29,6 +29,12 @@ yarn-error.log*
 # local env files
 .env
 .env.defaults.local
+.env.production
+.env.defaults
+.env.local
+apps/web/.env.local
+apps/web/.env.production
+apps/web/.env
 
 # turbo
 .turbo

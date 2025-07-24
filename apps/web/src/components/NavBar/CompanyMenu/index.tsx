@@ -50,8 +50,8 @@ export function CompanyMenu() {
             <Flex row alignItems="center" gap="$gap4" data-testid={TestID.NavUniswapLogo}>
               <NavIcon />
               {isLargeScreen && (
-                <Text variant="subheading1" color="$accent1" userSelect="none">
-                  Uniswap
+                <Text variant="subheading1" color="#15A291" userSelect="none">
+                  OrbitSwap
                 </Text>
               )}
             </Flex>
