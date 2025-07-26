@@ -1,52 +1,42 @@
 name: "Tag and release"
-
-# grant write access so we can push tags
 permissions:
   contents: write
-
 on:
   push:
     branches:
-      - main
+      - 'main'
 
 jobs:
   deploy-to-prod:
     runs-on: ubuntu-latest
-    # also give the job write access
-    permissions:
-      contents: write
-
     steps:
-      - name: Check out full history
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0          # fetch all tags & commits
+      - uses: actions/checkout@v3
 
       - name: 🧷️ Get version
-        uses: juliangruber/read-file-action@v1
+        uses: juliangruber/read-file-action@02bbba9876a8f870efd4ad64e3b9088d3fb94d4b
         id: version
         with:
           path: VERSION
 
       - name: 🧾️ Get release notes
-        uses: juliangruber/read-file-action@v1
+        uses: juliangruber/read-file-action@02bbba9876a8f870efd4ad64e3b9088d3fb94d4b
         id: release-notes
         with:
           path: RELEASE
 
       - name: 🏷️ Tag
         id: github-tag-action
-        # pin to the published release rather than a raw SHA
-        uses: uniswap/github-tag-action@v6
+        uses: uniswap/github-tag-action@7bddacd4864a0f5671e836721db60174d8a9c399
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           custom_tag: ${{ steps.version.outputs.content }}
-          tag_prefix: ""          # since your VERSION file already contains the full tag
+          tag_prefix: ""
 
       - name: 🪽 Release
-        # switch to the community-vetted release action
-        uses: ncipollo/release-action@v1
+        uses: actions/create-release@v1.1.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag: ${{ steps.github-tag-action.outputs.new_tag }}
-          name: Release ${{ steps.github-tag-action.outputs.new_tag }}
-          body: ${{ steps.release-notes.outputs.content }}
+          tag_name: ${{ steps.github-tag-action.outputs.new_tag }}
+          release_name: Release ${{ steps.github-tag-action.outputs.new_tag }}
+          body: ${{ steps.release-notes.outputs.content }} 
