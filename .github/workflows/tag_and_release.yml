@@ -1,5 +1,6 @@
 name: "Tag and release"
 
+# 1) Top‑level: grant write so GITHUB_TOKEN can push tags
 permissions:
   contents: write
 
@@ -11,6 +12,8 @@ on:
 jobs:
   deploy-to-prod:
     runs-on: ubuntu-latest
+
+    # 2) Job‑level write permission (redundant with above but explicit)
     permissions:
       contents: write
 
@@ -18,7 +21,7 @@ jobs:
       - name: Check out full history
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 0    # fetch all commits & tags
 
       - name: 🧷️ Get version
         id: version
@@ -32,7 +35,7 @@ jobs:
         with:
           path: RELEASE
 
-      - name: 🏷️ Tag (skip if it already exists)
+      - name: 🏷️ Tag (skip if already exists)
         id: github-tag-action
         uses: mathieudutour/github-tag-action@v6.2
         with:
@@ -40,7 +43,7 @@ jobs:
           custom_tag: ${{ steps.version.outputs.content }}
           tag_prefix: ""
           fetch_all_tags: true
-          skip_tag_if_exists: true   # ← add this
+          skip_tag_if_exists: true   # ← no error if tag is already there
 
       - name: 🪽 Release
         uses: ncipollo/release-action@v1
