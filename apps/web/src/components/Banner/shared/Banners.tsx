@@ -1,12 +1,12 @@
 import { OutageBanner, getOutageBannerSessionStorageKey } from 'components/Banner/Outage/OutageBanner'
-import { LPIncentiveAnnouncementBanner } from 'components/Liquidity/LPIncentiveAnnouncementBanner'
+//import { LPIncentiveAnnouncementBanner } from 'components/Liquidity/LPIncentiveAnnouncementBanner'
 import { manualChainOutageAtom } from 'featureFlags/flags/outageBanner'
 import { useAtomValue } from 'jotai/utils'
 import { useMemo } from 'react'
 import { useLocation } from 'react-router'
 import { UniverseChainId } from 'uniswap/src/features/chains/types'
-import { FeatureFlags } from 'uniswap/src/features/gating/flags'
-import { useFeatureFlag } from 'uniswap/src/features/gating/hooks'
+//import { FeatureFlags } from 'uniswap/src/features/gating/flags'
+//import { useFeatureFlag } from 'uniswap/src/features/gating/hooks'
 import { InterfacePageName } from 'uniswap/src/features/telemetry/constants'
 import { getChainIdFromChainUrlParam, isChainUrlParam } from 'utils/chainParams'
 import { getCurrentPageFromLocation } from 'utils/urlRoutes'
@@ -14,7 +14,7 @@ import { getCurrentPageFromLocation } from 'utils/urlRoutes'
 export function Banners() {
   const { pathname } = useLocation()
   const currentPage = getCurrentPageFromLocation(pathname)
-  const isLPIncentivesEnabled = useFeatureFlag(FeatureFlags.LpIncentives)
+  //const isLPIncentivesEnabled = useFeatureFlag(FeatureFlags.LpIncentives)
 
   const manualOutage = useAtomValue(manualChainOutageAtom)
 
@@ -49,9 +49,9 @@ export function Banners() {
     )
   }
 
-  if (isLPIncentivesEnabled) {
-    return <LPIncentiveAnnouncementBanner />
-  }
+  // if (isLPIncentivesEnabled) {
+  //   return <LPIncentiveAnnouncementBanner />
+  // }
 
   return null
 }

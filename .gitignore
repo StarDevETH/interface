@@ -28,13 +28,11 @@ yarn-error.log*
 
 # local env files
 .env
-.env.defaults.local
-.env.production
-.env.defaults
-.env.local
-apps/web/.env.local
-apps/web/.env.production
-apps/web/.env
+.env.*          # .env.local, .env.production, etc.
+!.env.example    # but DO commit the template
+# monorepo apps
+apps/*/.env*
+!apps/*/.env.example
 
 # turbo
 .turbo

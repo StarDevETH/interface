@@ -116,7 +116,7 @@ export function Footer() {
         width="100%"
         justifyContent="space-between"
       >
-        <Text variant="body3">© {currentYear} - Uniswap Labs</Text>
+        <Text variant="body3">© {currentYear} - WAGMI</Text>
         <Flex row alignItems="center" gap="$spacing16">
           <Anchor textDecorationLine="none" href="https://uniswap.org/trademark" target="_blank">
             <PolicyLink>{t('common.trademarkPolicy')}</PolicyLink>

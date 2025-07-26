@@ -1,6 +1,5 @@
 import { SwapTransactionSettingsStoreContextProvider } from 'uniswap/src/features/transactions/components/settings/stores/transactionSettingsStore/SwapTransactionSettingsStoreContextProvider'
 import { SwapFlow, type SwapFlowProps } from 'uniswap/src/features/transactions/swap/SwapFlow/SwapFlow'
-import { TradeRoutingPreference } from 'uniswap/src/features/transactions/swap/components/SwapFormSettings/settingsConfigurations/TradeRoutingPreference/TradeRoutingPreference'
 import { Slippage } from 'uniswap/src/features/transactions/swap/components/SwapFormSettings/settingsConfigurations/slippage/Slippage/Slippage'
 import { SwapDependenciesStoreContextProvider } from 'uniswap/src/features/transactions/swap/stores/swapDependenciesStore/SwapDependenciesStoreContextProvider'
 import { SwapFormStoreContextProvider } from 'uniswap/src/features/transactions/swap/stores/swapFormStore/SwapFormStoreContextProvider'
@@ -12,7 +11,7 @@ type WalletSwapFlowProps = Omit<SwapFlowProps, 'settings' | 'swapCallback' | 'wr
   onSubmitSwap?: () => Promise<void>
 }
 
-const SETTINGS: SwapFlowProps['settings'] = [Slippage, SwapProtection, TradeRoutingPreference]
+const SETTINGS: SwapFlowProps['settings'] = [Slippage, SwapProtection] //TradeRoutingPreference]
 
 export function WalletSwapFlow(props: WalletSwapFlowProps): JSX.Element {
   const swapCallback = useSwapCallback()

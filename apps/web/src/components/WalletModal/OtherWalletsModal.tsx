@@ -4,20 +4,20 @@ import ConnectionErrorView from 'components/WalletModal/ConnectionErrorView'
 import PrivacyPolicyNotice from 'components/WalletModal/PrivacyPolicyNotice'
 import { EVMOption } from 'components/WalletModal/WalletConnectorOption'
 import { useOrderedConnections } from 'components/WalletModal/useOrderedConnections'
-import { useRecentConnectorId } from 'components/Web3Provider/constants'
+//import { useRecentConnectorId } from 'components/Web3Provider/constants'
 import { useAtom } from 'jotai'
 import React from 'react'
 import { Trans } from 'react-i18next'
 import { transitions } from 'theme/styles'
 import { Flex, Separator, Text } from 'ui/src'
 import { BackArrow } from 'ui/src/components/icons/BackArrow'
-import { CONNECTION_PROVIDER_IDS } from 'uniswap/src/constants/web3'
+//import { CONNECTION_PROVIDER_IDS } from 'uniswap/src/constants/web3'
 
 export function OtherWalletsModal() {
   const showMoonpayText = useShowMoonpayText()
   const [, setMenu] = useAtom(miniPortfolioMenuStateAtom)
   const connectors = useOrderedConnections({ showSecondaryConnectors: true })
-  const recentConnectorId = useRecentConnectorId()
+  //const recentConnectorId = useRecentConnectorId()
 
   return (
     <Flex
@@ -54,12 +54,12 @@ export function OtherWalletsModal() {
             data-testid="option-grid"
           >
             {/* If uniswap mobile was the last used connector it will be show on the primary window */}
-            {recentConnectorId !== CONNECTION_PROVIDER_IDS.UNISWAP_WALLET_CONNECT_CONNECTOR_ID && (
+            {/*{recentConnectorId !== CONNECTION_PROVIDER_IDS.UNISWAP_WALLET_CONNECT_CONNECTOR_ID && (
               <>
                 <EVMOption connectorId={CONNECTION_PROVIDER_IDS.UNISWAP_WALLET_CONNECT_CONNECTOR_ID} />
                 {connectors.length > 0 && <Separator />}
               </>
-            )}
+            )}*/}
             {connectors.map((c, index) => (
               <React.Fragment key={c.uid + index}>
                 <EVMOption connectorId={c.id} detected={c.isInjected} />

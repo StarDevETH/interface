@@ -1,8 +1,6 @@
-import { GooglePlayStoreLogo } from 'components/Icons/GooglePlayStoreLogo'
 import { DownloadWalletOption } from 'components/WalletModal/DownloadWalletOption'
 import { DetectedBadge } from 'components/WalletModal/shared'
 import { useConnectorWithId } from 'components/WalletModal/useOrderedConnections'
-import { uniswapWalletConnect } from 'components/Web3Provider/walletConnect'
 import { useConnect } from 'hooks/useConnect'
 import { useAtom } from 'jotai'
 import { PropsWithChildren } from 'react'
@@ -10,14 +8,9 @@ import { Trans } from 'react-i18next'
 import { persistHideMobileAppPromoBannerAtom } from 'state/application/atoms'
 import { Flex, Image, Text } from 'ui/src'
 import { UNISWAP_LOGO } from 'ui/src/assets'
-import { AppStoreLogo } from 'ui/src/components/icons/AppStoreLogo'
-import { PhoneDownload } from 'ui/src/components/icons/PhoneDownload'
-import { ScanQr } from 'ui/src/components/icons/ScanQr'
 import { iconSizes } from 'ui/src/theme'
 import { CONNECTION_PROVIDER_IDS } from 'uniswap/src/constants/web3'
-import { ElementName } from 'uniswap/src/features/telemetry/constants'
-import { isMobileWeb, isWebIOS } from 'utilities/src/platform'
-import { openDownloadApp } from 'utils/openDownloadApp'
+import { isMobileWeb } from 'utilities/src/platform'
 
 interface OptionContainerProps extends PropsWithChildren {
   hideBackground?: boolean
@@ -75,6 +68,7 @@ export function UniswapWalletOptions() {
         ) : !isMobileWeb ? (
           <DownloadWalletOption />
         ) : null}
+        {/* }
         <OptionContainer
           onPress={() => {
             setPersistHideMobileAppPromoBanner(true)
@@ -109,7 +103,8 @@ export function UniswapWalletOptions() {
             </Flex>
           </Flex>
         </OptionContainer>
-
+        */}
+        {/*
         {isMobileWeb && (
           // If on a mobile web browser show the relevant app store download link
           <OptionContainer
@@ -141,7 +136,7 @@ export function UniswapWalletOptions() {
               )}
             </Flex>
           </OptionContainer>
-        )}
+        )} */}
       </Flex>
     </Flex>
   )
