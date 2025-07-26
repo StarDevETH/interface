@@ -1,7 +1,7 @@
 name: "Tag and release"
 
 permissions:
-  contents: write       # grant GITHUB_TOKEN write access so it can push tags
+  contents: write
 
 on:
   push:
@@ -12,13 +12,13 @@ jobs:
   deploy-to-prod:
     runs-on: ubuntu-latest
     permissions:
-      contents: write     # ensure the job itself has write permission
+      contents: write
 
     steps:
       - name: Check out full history
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0    # fetch all commits & tags so existing tags are detected
+          fetch-depth: 0
 
       - name: 🧷️ Get version
         id: version
@@ -32,14 +32,15 @@ jobs:
         with:
           path: RELEASE
 
-      - name: 🏷️ Tag
+      - name: 🏷️ Tag (skip if it already exists)
         id: github-tag-action
         uses: mathieudutour/github-tag-action@v6.2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           custom_tag: ${{ steps.version.outputs.content }}
-          tag_prefix: ""          # your VERSION file contains the full tag
-          fetch_all_tags: true    # ensure the action sees all existing tags
+          tag_prefix: ""
+          fetch_all_tags: true
+          skip_tag_if_exists: true   # ← add this
 
       - name: 🪽 Release
         uses: ncipollo/release-action@v1
