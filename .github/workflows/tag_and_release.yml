@@ -1,6 +1,6 @@
 name: "Tag and release"
 
-# 1) Give the built‑in token write access so it can push tags
+# Give the runner permission to push tags
 permissions:
   contents: write
 
@@ -12,16 +12,21 @@ on:
 jobs:
   deploy-to-prod:
     runs-on: ubuntu-latest
-    # 2) Double‑check the job has write permission
     permissions:
-      contents: write
+      contents: write        # job‑level write access
 
     steps:
+      ####################################################################
+      # 1. Check out the entire history so we have ALL existing tags
+      ####################################################################
       - name: Check out full history
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0        # fetch all commits & tags
+          fetch-depth: 0      # ↖ fetch every commit & tag
 
+      ####################################################################
+      # 2. Read VERSION and RELEASE files
+      ####################################################################
       - name: 🧷️ Get version
         id: version
         uses: juliangruber/read-file-action@v1
@@ -34,19 +39,49 @@ jobs:
         with:
           path: RELEASE
 
-      - name: 🏷️ Tag (skip if it already exists)
+      ####################################################################
+      # 3. Decide whether the tag already exists
+      ####################################################################
+      - name: Does tag already exist?
+        id: tagcheck
+        run: |
+          TAG=$(echo "${{ steps.version.outputs.content }}" | tr -d '[:space:]')
+          echo "Tag to publish: $TAG"
+          if git ls-remote --tags origin | grep -q "refs/tags/$TAG$"; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+            echo "Tag already exists on remote."
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+            echo "Tag does NOT exist yet."
+          fi
+
+      ####################################################################
+      # 4. Create the tag ONLY if it doesn't exist
+      ####################################################################
+      - name: 🏷️ Tag
+        if: steps.tagcheck.outputs.exists == 'false'
         id: github-tag-action
         uses: mathieudutour/github-tag-action@v6.2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           custom_tag: ${{ steps.version.outputs.content }}
-          tag_prefix: ""          # no extra prefix—VERSION file is the full tag
-          fetch_all_tags: true    # load every existing tag
-          skip_tag_if_exists: true
+          tag_prefix: ""          # VERSION already contains full tag
+          fetch_all_tags: true
 
+      ####################################################################
+      # 5. Create a GitHub Release ONLY if a new tag was pushed
+      ####################################################################
       - name: 🪽 Release
+        if: steps.tagcheck.outputs.exists == 'false'
         uses: ncipollo/release-action@v1
         with:
           tag: ${{ steps.github-tag-action.outputs.new_tag }}
           name: Release ${{ steps.github-tag-action.outputs.new_tag }}
           body: ${{ steps.release-notes.outputs.content }}
+
+      ####################################################################
+      # 6. Log a message when the tag already existed (for visibility)
+      ####################################################################
+      - name: Skip notice
+        if: steps.tagcheck.outputs.exists == 'true'
+        run: echo "Tag already existed – skipping tag & release steps."
